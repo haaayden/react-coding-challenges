@@ -1,19 +1,31 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMoon } from '@fortawesome/free-solid-svg-icons';
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import '../styles/_app.scss';
 
-function App() {
-  return (
-    <div className="app">
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { isDarkMode: false }
+  }
+
+  appClassNames = () => this.state.isDarkMode ? 'app dark-mode' : 'app'
+  darkModeBtnFaIcon = () => this.state.isDarkMode ? faSun : faMoon
+
+  handleDarkModeBtnClick = () => this.setState({ isDarkMode: !this.state.isDarkMode })
+
+  render() { return (
+    <div className={this.appClassNames()}>
       <div className="level">
         <div>
           <h1 className="title">Dark Mode Challenge</h1>
         </div>
 
-        {/* --The button that should toggle dark mode-- */}
-        <button className="app__dark-mode-btn icon level-right">
-          <FontAwesomeIcon icon={faMoon} />
+        <button
+          className="app__dark-mode-btn icon level-right"
+          onClick={this.handleDarkModeBtnClick}
+        >
+          <FontAwesomeIcon icon={this.darkModeBtnFaIcon()} />
         </button>
 
       </div>
@@ -46,7 +58,7 @@ function App() {
         </div>
       </section>
     </div>
-  );
+  );}
 }
 
 export default App;
