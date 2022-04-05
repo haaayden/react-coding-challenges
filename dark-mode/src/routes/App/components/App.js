@@ -6,11 +6,11 @@ import '../styles/_app.scss';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isDarkMode: true }
+    this.state = { isDarkMode: false }
   }
 
-  appClassNames = () => this.state.isDarkMode ? 'app' : 'app dark-mode'
-  darkModeBtnFaIcon = () => this.state.isDarkMode ? faMoon : faSun
+  appClassNames = () => this.state.isDarkMode ? 'app dark-mode' : 'app'
+  darkModeBtnFaIcon = () => this.state.isDarkMode ? faSun : faMoon
 
   handleDarkModeBtnClick = () => this.setState({ isDarkMode: !this.state.isDarkMode })
 
